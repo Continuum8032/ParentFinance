@@ -51,7 +51,7 @@ body {
 }
 
 .container::before {
-    content: '💚'; /* Крипер */
+    content: ''; /* Крипер */
     top: 10px;
     left: 10px;
     animation: creeperWobble 4s ease-in-out infinite;
@@ -196,7 +196,7 @@ body::before {
 
 /* Добавляем фоновых мобов через псевдоэлементы */
 body::after {
-    content: '💚';
+    content: '';
     position: fixed;
     top: 20px;
     left: 50%;
@@ -219,7 +219,7 @@ body::after {
   margin: 20px auto;
   perspective: 800px;
   perspective-origin: -30% 200px;
-  position: relative;
+  position: relative;  
   width: 40px;
   transform: scale(0.2);
 }
@@ -488,7 +488,7 @@ body::after {
   position: fixed;
   width: 60px;
   z-index: 1;
-  transform: scale(0.39);
+  transform: scale(0.78);
   top: 10%;
 }
 
@@ -507,7 +507,7 @@ body::after {
   right: 25%;
   animation: headRotateBig 4s infinite alternate forwards;
   animation-delay: -2s;
-  transform: scale(0.42);
+  transform: scale(0.84);
 }
 
 .big-enderman.enderman-4 {
@@ -515,7 +515,7 @@ body::after {
   left: 8%;
   animation: headRotateRight 4s infinite alternate forwards;
   animation-delay: -5s;
-  transform: scale(0.40);
+  transform: scale(0.80);
 }
 
 .big-enderman .head {
@@ -1166,7 +1166,7 @@ header h1 {
 
 /* Фиолетовая монетка для Несторкоинов */
 #nestor::before {
-    content: '●';
+    content: '';
     color: #B83DCD;
     font-size: 16px;
     margin-right: 5px;
@@ -1303,7 +1303,7 @@ header h1 {
 }
 
 .history h3::before {
-    content: '💚 ';
+    content: '';
 }
 
 .history h3::after {
@@ -1709,3 +1709,54 @@ header h1 {
   vertical-align: middle;
   box-shadow: 0 0 4px #E500FD;
 } 
+/* Лица мобов для кнопок */
+.enderman-face {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background: #000;
+    position: relative;
+    vertical-align: middle;
+}
+
+.enderman-face::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    width: 3px;
+    height: 6px;
+    background: #ff69b4;
+    box-shadow: 8px 0 0 #ff69b4;
+}
+
+.creeper-face {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background: #4CAF50;
+    position: relative;
+    vertical-align: middle;
+}
+
+.creeper-face::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    width: 2px;
+    height: 2px;
+    background: #000;
+    box-shadow: 
+        10px 0 0 #000,
+        0 4px 0 #000,
+        2px 4px 0 #000,
+        4px 4px 0 #000,
+        6px 4px 0 #000,
+        8px 4px 0 #000,
+        10px 4px 0 #000,
+        4px 8px 0 #000,
+        6px 8px 0 #000;
+}
