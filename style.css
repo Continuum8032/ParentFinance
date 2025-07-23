@@ -123,13 +123,14 @@ body {
     font-size: 28px;
 }
 
-/* Криперы */
-.creeper-decoration::before {
-    content: '💚';
-}
-
+/* Криперы - теперь хорошие */
 .creeper-decoration {
     animation: creeperFloat 6s ease-in-out infinite;
+    width: 20px;
+    height: 40px;
+    background: #4a7c59;
+    border: 1px solid #2d5a3d;
+    position: relative;
 }
 
 .creeper-decoration:nth-child(1) {
@@ -150,14 +151,14 @@ body {
     animation-delay: 1.5s;
 }
 
-/* Эндермены */
+/* Эндермены - теперь плохие */
 .enderman-decoration {
     animation: endermanFloat 8s ease-in-out infinite;
     width: 20px;
     height: 40px;
     background-image: 
-        radial-gradient(circle at 25% 15%, #8b00ff 2px, transparent 2px),
-        radial-gradient(circle at 75% 15%, #8b00ff 2px, transparent 2px),
+        radial-gradient(circle at 25% 15%, #ff0080 2px, transparent 2px),
+        radial-gradient(circle at 75% 15%, #ff0080 2px, transparent 2px),
         linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
     border: 1px solid #333;
     position: relative;
@@ -257,6 +258,273 @@ body::after {
 @keyframes backgroundMobs {
     0%, 100% { opacity: 0.4; transform: scale(1); }
     50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+/* 3D CSS ENDERMAN */
+.enderman-3d {
+  animation: headRotate 4s infinite alternate forwards;
+  height: 100px;
+  margin: 20px auto;
+  perspective: 800px;
+  perspective-origin: -30% 200px;
+  position: relative;
+  width: 40px;
+  transform: scale(0.2);
+}
+
+.enderman-3d .head {
+  background: black;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  width: 30px;
+}
+
+.enderman-3d .head div {
+  height: 18px;
+  position: absolute;
+  width: 20px;
+  z-index: 100;
+}
+
+.enderman-3d .right {
+  background: black;
+  transform: rotateY(-270deg) translateX(0);
+  transform-origin: top right;
+}
+
+.enderman-3d .left {
+  background: black;
+  transform: rotateY(270deg) translateX(0);
+  transform-origin: center left;
+}
+
+.enderman-3d .bottom {
+  background: black;
+  transform: rotateX(90deg) translateY(20px);
+  transform-origin: bottom center;
+}
+
+.enderman-3d .front {
+  background: black;
+  transform: translateZ(20px);
+}
+
+.enderman-3d .right-eye {
+  background: #F769FA;
+  height: 2px;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 8px;
+}
+
+.enderman-3d .right-eye::before {
+  background: #E500FD;
+  content: "";
+  height: 2px;
+  margin-left: -1px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+}
+
+.enderman-3d .left-eye {
+  background: #F769FA;
+  height: 2px;
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  width: 8px;
+}
+
+.enderman-3d .left-eye::before {
+  background: #E500FD;
+  content: "";
+  height: 2px;
+  margin-left: -1px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+}
+
+.enderman-3d .enderman-body {
+  background: black;
+  height: 30px;
+  position: absolute;
+  top: 17px;
+  left: 5px;
+  width: 24px;
+}
+
+.enderman-3d .enderman-body::before {
+  background: black;
+  content: "";
+  height: 4px;
+  margin-left: -8px;
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 16px;
+}
+
+.enderman-3d .left-arm {
+  animation: leftArm 2s infinite alternate forwards;
+  background: black;
+  height: 80px;
+  position: absolute;
+  top: 17px;
+  left: -1px;
+  transform: rotate(5deg);
+  width: 5px;
+}
+
+.enderman-3d .right-arm {
+  animation: rightArm 2s infinite alternate backwards;
+  animation-delay: 1s;
+  background: black;
+  height: 80px;
+  position: absolute;
+  top: 17px;
+  right: 4px;
+  transform: rotate(-5deg);
+  width: 5px;
+}
+
+.enderman-3d .left-leg {
+  background: black;
+  box-shadow: -1px -1px 0 0 black;
+  height: 86px;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  transform: rotate(-3deg);
+  width: 5px;
+  animation: rightLeg 0.15s infinite alternate backwards;
+  animation-delay: 1s;
+}
+
+.enderman-3d .left-leg::after {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid black;
+  content: "";
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  transform: rotate(-35deg);
+  width: 0;
+}
+
+.enderman-3d .right-leg {
+  animation: rightLeg 0.15s infinite alternate backwards;
+  background: black;
+  box-shadow: -1px -1px 0 0 black;
+  height: 76px;
+  position: absolute;
+  top: 40px;
+  right: 14px;
+  transform: rotate(2deg);
+  width: 5px;
+}
+
+.enderman-3d .right-leg::after {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid black;
+  content: "";
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  transform: rotate(-35deg);
+  width: 0;
+}
+
+@keyframes headRotate {
+  0% { perspective-origin: -30% 30px; }
+  50% { perspective-origin: -60% 30px; }
+  100% { perspective-origin: 100% 30px; }
+}
+
+@keyframes leftArm {
+  0% { transform: translate(2px, 0px); }
+  50% { transform: translate(2.4px, 0px); }
+  100% { transform: translate(2px, 0px); }
+}
+
+@keyframes rightArm {
+  0% { transform: translate(-2px, 0px); }
+}
+
+@keyframes leftLeg {
+  0% { top: 37px; }
+}
+
+@keyframes rightLeg {
+  0% { top: 38px; }
+}
+
+/* 3D CSS CREEPER */
+.creeper-3d {
+  list-style: none;
+  width: 40px;
+  height: 40px;
+  perspective: 9999px;
+  animation: trans 6s infinite linear;
+  transform-style: preserve-3d;
+  display: block;
+  margin: 0px auto;
+  position: relative;
+  transform-origin: 50% 50%;
+  transform: scale(0.2);
+}
+
+.creeper-3d ol {
+  display: block;
+  width: 40px;
+  height: 80px;
+  background: #4a7c59;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+}
+
+.creeper-3d ol:nth-child(1) {
+  transform: translateZ(10px);
+  background: #4a7c59;
+}
+
+.creeper-3d ol:nth-child(2) {
+  transform: translateZ(-10px);
+  background: #4a7c59;
+}
+
+.creeper-3d ol:nth-child(3) {
+  transform: translateX(-10px) rotateY(90deg);
+  width: 20px;
+  background: #4a7c59;
+}
+
+.creeper-3d ol:nth-child(4) {
+  transform: translateX(30px) rotateY(90deg);
+  width: 20px;
+  background: #4a7c59;
+}
+
+@keyframes trans {
+  from {
+    transform: rotateY(0deg) rotateZ(15deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateZ(15deg);
+  }
 }
 
 header {
@@ -420,11 +688,15 @@ header h1 {
 }
 
 /* ДОБАВЛЯЕМ КРИПЕРОВ И ЭНДЕРМЕНОВ НА КНОПКИ */
-.btn-earn {
+.btn-earn::before {
+    content: '💚 ';
+}
+
+.btn-spend {
     position: relative;
 }
 
-.btn-earn::before {
+.btn-spend::before {
     content: '';
     display: inline-block;
     width: 12px;
@@ -436,7 +708,7 @@ header h1 {
     position: relative;
 }
 
-.btn-earn::after {
+.btn-spend::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -447,10 +719,6 @@ header h1 {
     background: #8b00ff;
     box-shadow: 6px 0 0 #8b00ff;
     border-radius: 0.5px;
-}
-
-.btn-spend::before {
-    content: '💚 ';
 }
 
 .btn-shop::before {
@@ -494,27 +762,11 @@ header h1 {
 }
 
 .history h3::before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 24px;
-    background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
-    border: 1px solid #333;
-    position: relative;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-/* Упрощенный Enderman для заголовков */
-.history h3::before {
-    background-image: 
-        radial-gradient(circle at 25% 20%, #8b00ff 1px, transparent 1px),
-        radial-gradient(circle at 75% 20%, #8b00ff 1px, transparent 1px),
-        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    content: '💚 ';
 }
 
 .history h3::after {
-    content: ' 💚';
+    content: '';
 }
 
 #history-list {
@@ -593,26 +845,10 @@ header h1 {
 
 .modal h3::before {
     content: '';
-    display: inline-block;
-    width: 12px;
-    height: 24px;
-    background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
-    border: 1px solid #333;
-    position: relative;
-    vertical-align: middle;
-    margin-right: 8px;
-}
-
-/* Глаза для Enderman'а в модальных окнах */
-.modal h3::before {
-    background-image: 
-        radial-gradient(circle at 25% 20%, #8b00ff 1px, transparent 1px),
-        radial-gradient(circle at 75% 20%, #8b00ff 1px, transparent 1px),
-        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
 }
 
 .modal h3::after {
-    content: ' 💚';
+    content: '';
 }
 
 .modal select {
@@ -674,22 +910,8 @@ header h1 {
     text-shadow: 1px 1px 0px #2e7d32;
 }
 
-.btn-confirm {
-    position: relative;
-}
-
 .btn-confirm::before {
     content: '';
-    display: inline-block;
-    width: 10px;
-    height: 20px;
-    background-image: 
-        radial-gradient(circle at 25% 15%, #8b00ff 1px, transparent 1px),
-        radial-gradient(circle at 75% 15%, #8b00ff 1px, transparent 1px),
-        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
-    border: 1px solid #333;
-    vertical-align: middle;
-    margin-right: 5px;
 }
 
 .btn-cancel {
@@ -700,7 +922,7 @@ header h1 {
 }
 
 .btn-cancel::before {
-    content: '💚 ';
+    content: '';
 }
 
 /* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ */
