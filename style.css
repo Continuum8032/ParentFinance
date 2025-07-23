@@ -818,7 +818,7 @@ body::after {
 
 /* 3D CSS CREEPER */
 .creeper-3d {
-  --box: 0.3vmin;
+  --box: 0.5vmin;
   --color0: #0000;
   --color1: #8fe38f;
   --color2: #0f800f;
@@ -1023,7 +1023,7 @@ body::after {
   right: 15%;
   animation-duration: 15s;
   animation-delay: -3s;
-  transform: scale(0.08);
+  transform: scale(0.1);
 }
 
 .creeper-3d.creeper-3 {
@@ -1031,8 +1031,19 @@ body::after {
   left: 12%;
   animation-duration: 10s;
   animation-delay: -7s;
-  transform: scale(0.06);
+  transform: scale(0.075);
 }
+    .creeper-3d.creeper-4 {
+        top: 45%;
+        right: 20%;
+        transform: scale(0.045);
+    }
+
+    .creeper-3d.creeper-5 {
+        bottom: 10%;
+        right: 3%;
+        transform: scale(0.042);
+    }
 
 header {
     text-align: center;
@@ -1504,26 +1515,37 @@ header h1 {
     
     /* Адаптивность для 3D криперов на мобильных (осталось только 3) */
     .creeper-3d {
-        --box: 0.2vmin;
-        transform: scale(0.03);
+        --box: 0.4vmin;
+        transform: scale(0.06);
     }
     
     .creeper-3d.creeper-1 {
         top: 10%;
         left: 8%;
-        transform: scale(0.02);
+        transform: scale(0.04);
     }
     
     .creeper-3d.creeper-2 {
         top: 20%;
         right: 8%;
-        transform: scale(0.02);
+        transform: scale(0.04);
     }
     
     .creeper-3d.creeper-3 {
         bottom: 35%;
         left: 5%;
-        transform: scale(0.02);
+        transform: scale(0.04);
+    }
+    .creeper-3d.creeper-4 {
+        top: 45%;
+        right: 20%;
+        transform: scale(0.045);
+    }
+
+    .creeper-3d.creeper-5 {
+        bottom: 10%;
+        right: 3%;
+        transform: scale(0.042);
     }
     
     /* Новые эндермены на мобильных */
@@ -1809,4 +1831,21 @@ header h1 {
         9px 9px 0 #000,
         4px 12px 0 #000,
         8px 12px 0 #000;
+}
+
+/* Новые криперы 4 и 5 */
+.creeper-3d.creeper-4 {
+  top: 60%;
+  right: 30%;
+  animation-duration: 14s;
+  animation-delay: -4s;
+  transform: scale(0.09);
+}
+
+.creeper-3d.creeper-5 {
+  bottom: 15%;
+  right: 8%;
+  animation-duration: 11s;
+  animation-delay: -6s;
+  transform: scale(0.085);
 }
