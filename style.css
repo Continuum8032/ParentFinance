@@ -262,7 +262,7 @@ body::after {
 
 /* 3D CSS ENDERMAN */
 .enderman-3d {
-  animation: headRotate 4s infinite alternate forwards;
+  animation: headRotateSmall 4s infinite alternate forwards;
   height: 100px;
   margin: 20px auto;
   perspective: 800px;
@@ -371,7 +371,7 @@ body::after {
 }
 
 .enderman-3d .left-arm {
-  animation: leftArm 2s infinite alternate forwards;
+  animation: leftArmSmall 2s infinite alternate forwards;
   background: black;
   height: 80px;
   position: absolute;
@@ -382,7 +382,7 @@ body::after {
 }
 
 .enderman-3d .right-arm {
-  animation: rightArm 2s infinite alternate backwards;
+  animation: rightArmSmall 2s infinite alternate backwards;
   animation-delay: 1s;
   background: black;
   height: 80px;
@@ -402,7 +402,7 @@ body::after {
   left: 10px;
   transform: rotate(-3deg);
   width: 5px;
-  animation: rightLeg 0.15s infinite alternate backwards;
+  animation: rightLegSmall 0.15s infinite alternate backwards;
   animation-delay: 1s;
 }
 
@@ -420,7 +420,7 @@ body::after {
 }
 
 .enderman-3d .right-leg {
-  animation: rightLeg 0.15s infinite alternate backwards;
+  animation: rightLegSmall 0.15s infinite alternate backwards;
   background: black;
   box-shadow: -1px -1px 0 0 black;
   height: 76px;
@@ -444,27 +444,27 @@ body::after {
   width: 0;
 }
 
-@keyframes headRotate {
+@keyframes headRotateSmall {
   0% { perspective-origin: -30% 30px; }
   50% { perspective-origin: -60% 30px; }
   100% { perspective-origin: 100% 30px; }
 }
 
-@keyframes leftArm {
+@keyframes leftArmSmall {
   0% { transform: translate(2px, 0px); }
   50% { transform: translate(2.4px, 0px); }
   100% { transform: translate(2px, 0px); }
 }
 
-@keyframes rightArm {
+@keyframes rightArmSmall {
   0% { transform: translate(-2px, 0px); }
 }
 
-@keyframes leftLeg {
+@keyframes leftLegSmall {
   0% { top: 37px; }
 }
 
-@keyframes rightLeg {
+@keyframes rightLegSmall {
   0% { top: 38px; }
 }
 
@@ -525,6 +525,326 @@ body::after {
   to {
     transform: rotateY(360deg) rotateZ(15deg);
   }
+}
+
+/* БОЛЬШИЕ 3D ENDERMAN ПО КРАЯМ СТРАНИЦЫ */
+.big-enderman {
+  animation: headRotateBig 4s infinite alternate forwards;
+  height: 300px;
+  perspective: 800px;
+  perspective-origin: -30% 60px;
+  position: fixed;
+  width: 60px;
+  z-index: 1;
+  transform: scale(0.3);
+  top: 10%;
+}
+
+.big-enderman.left-enderman {
+  left: -30px;
+}
+
+.big-enderman.right-enderman {
+  right: -30px;
+  animation: headRotateRight 4s infinite alternate forwards;
+}
+
+.big-enderman .head {
+  background: black;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  width: 45px;
+}
+
+.big-enderman .head div {
+  height: 27px;
+  position: absolute;
+  width: 30px;
+  z-index: 100;
+}
+
+.big-enderman .right {
+  background: black;
+  transform: rotateY(-270deg) translateX(0);
+  transform-origin: top right;
+}
+
+.big-enderman .left {
+  background: black;
+  transform: rotateY(270deg) translateX(0);
+  transform-origin: center left;
+}
+
+.big-enderman .bottom {
+  background: black;
+  transform: rotateX(90deg) translateY(30px);
+  transform-origin: bottom center;
+}
+
+.big-enderman .front {
+  background: black;
+  transform: translateZ(30px);
+}
+
+.big-enderman .right-eye {
+  background: #F769FA;
+  height: 3px;
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 12px;
+}
+
+.big-enderman .right-eye::before {
+  background: #E500FD;
+  content: "";
+  height: 3px;
+  margin-left: -1.5px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+}
+
+.big-enderman .left-eye {
+  background: #F769FA;
+  height: 3px;
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  width: 12px;
+}
+
+.big-enderman .left-eye::before {
+  background: #E500FD;
+  content: "";
+  height: 3px;
+  margin-left: -1.5px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+}
+
+.big-enderman .enderman-body {
+  background: black;
+  height: 45px;
+  position: absolute;
+  top: 25px;
+  left: 7.5px;
+  width: 36px;
+}
+
+.big-enderman .enderman-body::before {
+  background: black;
+  content: "";
+  height: 6px;
+  margin-left: -12px;
+  position: absolute;
+  top: -4.5px;
+  left: 50%;
+  width: 24px;
+}
+
+.big-enderman .left-arm {
+  animation: leftArmBig 2s infinite alternate forwards;
+  background: black;
+  height: 120px;
+  position: absolute;
+  top: 25px;
+  left: -1.5px;
+  transform: rotate(5deg);
+  width: 7.5px;
+}
+
+.big-enderman .right-arm {
+  animation: rightArmBig 2s infinite alternate backwards;
+  animation-delay: 1s;
+  background: black;
+  height: 120px;
+  position: absolute;
+  top: 25px;
+  right: 6px;
+  transform: rotate(-5deg);
+  width: 7.5px;
+}
+
+.big-enderman .left-leg {
+  background: black;
+  box-shadow: -1.5px -1.5px 0 0 black;
+  height: 129px;
+  position: absolute;
+  top: 60px;
+  left: 15px;
+  transform: rotate(-3deg);
+  width: 7.5px;
+  animation: rightLegBig 0.15s infinite alternate backwards;
+  animation-delay: 1s;
+}
+
+.big-enderman .left-leg::after {
+  border-top: 1.5px solid transparent;
+  border-bottom: 1.5px solid transparent;
+  border-left: 1.5px solid black;
+  content: "";
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  left: -0.9px;
+  transform: rotate(-35deg);
+  width: 0;
+}
+
+.big-enderman .right-leg {
+  animation: rightLegBig 0.15s infinite alternate backwards;
+  background: black;
+  box-shadow: -1.5px -1.5px 0 0 black;
+  height: 114px;
+  position: absolute;
+  top: 60px;
+  right: 21px;
+  transform: rotate(2deg);
+  width: 7.5px;
+}
+
+.big-enderman .right-leg::after {
+  border-top: 1.5px solid transparent;
+  border-bottom: 1.5px solid transparent;
+  border-left: 1.5px solid black;
+  content: "";
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  left: -0.9px;
+  transform: rotate(-35deg);
+  width: 0;
+}
+
+.big-enderman .ender-dust {
+  height: 210px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+}
+
+.big-enderman .particle {
+  animation: particle 0.65s infinite alternate forwards;
+  background: #B83DCD;
+  height: 6px;
+  list-style: none;
+  position: absolute;
+  width: 6px;
+  border-radius: 50%;
+}
+
+/* Частицы для левого эндермена */
+.big-enderman .particle:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  width: 4px;
+  height: 4px;
+  animation-delay: 0.8s;
+  background: #C45DD8;
+}
+
+.big-enderman .particle:nth-child(2) {
+  top: 25%;
+  left: 60%;
+  width: 6px;
+  height: 6px;
+  animation-delay: 1.6s;
+  background: #D679E2;
+}
+
+.big-enderman .particle:nth-child(3) {
+  top: 40%;
+  left: 10%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 2.4s;
+  background: #B83DCD;
+}
+
+.big-enderman .particle:nth-child(4) {
+  top: 55%;
+  left: 80%;
+  width: 3px;
+  height: 3px;
+  animation-delay: 3.2s;
+  background: #E895EC;
+}
+
+.big-enderman .particle:nth-child(5) {
+  top: 70%;
+  left: 30%;
+  width: 7px;
+  height: 7px;
+  animation-delay: 4s;
+  background: #CA6ADF;
+}
+
+.big-enderman .particle:nth-child(6) {
+  top: 15%;
+  left: 40%;
+  width: 4px;
+  height: 4px;
+  animation-delay: 4.8s;
+  background: #B83DCD;
+}
+
+.big-enderman .particle:nth-child(7) {
+  top: 85%;
+  left: 70%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 5.6s;
+  background: #D679E2;
+}
+
+.big-enderman .particle:nth-child(8) {
+  top: 90%;
+  left: 15%;
+  width: 6px;
+  height: 6px;
+  animation-delay: 6.4s;
+  background: #C45DD8;
+}
+
+@keyframes headRotateBig {
+  0% { perspective-origin: -30% 45px; }
+  50% { perspective-origin: -60% 45px; }
+  100% { perspective-origin: 100% 45px; }
+}
+
+@keyframes headRotateRight {
+  0% { perspective-origin: 130% 45px; }
+  50% { perspective-origin: 160% 45px; }
+  100% { perspective-origin: -100% 45px; }
+}
+
+@keyframes leftArmBig {
+  0% { transform: translate(3px, 0px) rotate(5deg); }
+  50% { transform: translate(3.6px, 0px) rotate(5deg); }
+  100% { transform: translate(3px, 0px) rotate(5deg); }
+}
+
+@keyframes rightArmBig {
+  0% { transform: translate(-3px, 0px) rotate(-5deg); }
+}
+
+@keyframes leftLegBig {
+  0% { top: 55.5px; }
+}
+
+@keyframes rightLegBig {
+  0% { top: 57px; }
+}
+
+@keyframes particle {
+  0% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(-20px); }
 }
 
 header {
@@ -960,6 +1280,20 @@ header h1 {
     body::before {
         font-size: 16px;
         padding: 10px;
+    }
+    
+    /* Адаптивность для больших эндерменов на мобильных */
+    .big-enderman {
+        transform: scale(0.2);
+        top: 5%;
+    }
+    
+    .big-enderman.left-enderman {
+        left: -40px;
+    }
+    
+    .big-enderman.right-enderman {
+        right: -40px;
     }
     
     header {
