@@ -422,7 +422,8 @@ body::after {
 
 /* 3D CSS CREEPER */
 .creeper-3d {
-  list-style: none;
+  position: fixed;
+  z-index: 50;  list-style: none;
   width: 40px;
   height: 40px;
   perspective: 9999px;
@@ -818,7 +819,8 @@ body::after {
 
 /* 3D CSS CREEPER */
 .creeper-3d {
-  --box: 0.5vmin;
+  position: fixed;
+  z-index: 50;  --box: 0.5vmin;
   --color0: #0000;
   --color1: #8fe38f;
   --color2: #0f800f;
@@ -1515,7 +1517,8 @@ header h1 {
     
     /* Адаптивность для 3D криперов на мобильных (осталось только 3) */
     .creeper-3d {
-        --box: 0.4vmin;
+  position: fixed;
+  z-index: 50;        --box: 0.4vmin;
         transform: scale(0.06);
     }
     
