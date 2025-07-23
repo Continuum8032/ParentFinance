@@ -1,6 +1,6 @@
 // Глобальные переменные
-let mamcoins = 0;
-let pavlushi = 0;
+let nestor = 0;
+let vadimus = 0;
 let history = [];
 let isLoading = true;
 let db = null;
@@ -13,7 +13,7 @@ let userId = `family_child_${USER_FLAG.toLowerCase()}`;
 // ГЛОБАЛЬНЫЕ ФУНКЦИИ ДЛЯ HTML onclick - ОБЪЯВЛЯЕМ СРАЗУ!
 
 function showEarnModal() {
-  console.log('🦊 Показываем модальное окно заработка');
+  console.log('🦊 Показываем модальное окно Лисичка Сахарочек');
   const modal = document.getElementById('earnModal');
   if (modal) {
     modal.style.display = 'block';
@@ -23,7 +23,7 @@ function showEarnModal() {
 }
 
 function showSpendModal() {
-  console.log('🦊 Показываем модальное окно штрафа');
+  console.log('🦊 Показываем модальное окно Лисичка Тролл');
   const modal = document.getElementById('spendModal');
   if (modal) {
     modal.style.display = 'block';
@@ -86,10 +86,10 @@ function confirmEarn() {
     return;
   }
 
-  console.log(`✅ Заработал: ${text} (+${value} павлушей)`);
+  console.log(`✅ Заработал: ${text} (+${value} вадимусов)`);
 
-  pavlushi += value;
-  convertPavlushi();
+  vadimus += value;
+  convertVadimus();
   addToHistory(`✅ ${text}`, 'earn');
   updateDisplay();
   closeModal('earnModal');
@@ -110,35 +110,35 @@ function confirmSpend() {
     return;
   }
 
-  console.log(`❌ Штраф: ${text} (-${value} павлушей/мамкоинов)`);
+  console.log(`❌ Штраф: ${text} (-${value} вадимусов/несторкоинов)`);
 
   if (value >= 100) {
-    const mamcoinsToRemove = Math.floor(value / 10);
-    if (mamcoins >= mamcoinsToRemove) {
-      mamcoins -= mamcoinsToRemove;
+    const nestorToRemove = Math.floor(value / 10);
+    if (nestor >= nestorToRemove) {
+      nestor -= nestorToRemove;
     } else {
-      const totalPavlushi = mamcoins * 10 + pavlushi;
-      if (totalPavlushi >= value) {
-        const remainingPavlushi = totalPavlushi - value;
-        mamcoins = Math.floor(remainingPavlushi / 10);
-        pavlushi = remainingPavlushi % 10;
+      const totalVadimus = nestor * 10 + vadimus;
+      if (totalVadimus >= value) {
+        const remainingVadimus = totalVadimus - value;
+        nestor = Math.floor(remainingVadimus / 10);
+        vadimus = remainingVadimus % 10;
       } else {
-        mamcoins = 0;
-        pavlushi = 0;
+        nestor = 0;
+        vadimus = 0;
       }
     }
   } else {
-    if (pavlushi >= value) {
-      pavlushi -= value;
+    if (vadimus >= value) {
+      vadimus -= value;
     } else {
-      const totalPavlushi = mamcoins * 10 + pavlushi;
-      if (totalPavlushi >= value) {
-        const remainingPavlushi = totalPavlushi - value;
-        mamcoins = Math.floor(remainingPavlushi / 10);
-        pavlushi = remainingPavlushi % 10;
+      const totalVadimus = nestor * 10 + vadimus;
+      if (totalVadimus >= value) {
+        const remainingVadimus = totalVadimus - value;
+        nestor = Math.floor(remainingVadimus / 10);
+        vadimus = remainingVadimus % 10;
       } else {
-        mamcoins = 0;
-        pavlushi = 0;
+        nestor = 0;
+        vadimus = 0;
       }
     }
   }
@@ -163,21 +163,21 @@ function confirmShop() {
     return;
   }
 
-  const mamcoinsNeeded = Math.floor(value / 10);
-  const totalMamcoins = mamcoins + Math.floor(pavlushi / 10);
+  const nestorNeeded = Math.floor(value / 10);
+  const totalNestor = nestor + Math.floor(vadimus / 10);
 
-  if (totalMamcoins < mamcoinsNeeded) {
-    alert(`Недостаточно мамкоинов! Нужно: ${mamcoinsNeeded}, есть: ${totalMamcoins}`);
+  if (totalNestor < nestorNeeded) {
+    alert(`Недостаточно несторкоинов! Нужно: ${nestorNeeded}, есть: ${totalNestor}`);
     return;
   }
 
-  console.log(`🛒 Покупка: ${text} (-${mamcoinsNeeded} мамкоинов)`);
+  console.log(`🛒 Покупка: ${text} (-${nestorNeeded} несторкоинов)`);
 
-  const totalPavlushi = mamcoins * 10 + pavlushi;
-  const remainingPavlushi = totalPavlushi - value;
+  const totalVadimus = nestor * 10 + vadimus;
+  const remainingVadimus = totalVadimus - value;
 
-  mamcoins = Math.floor(remainingPavlushi / 10);
-  pavlushi = remainingPavlushi % 10;
+  nestor = Math.floor(remainingVadimus / 10);
+  vadimus = remainingVadimus % 10;
 
   addToHistory(`🛒 Купил: ${text}`, 'shop');
   updateDisplay();
@@ -271,8 +271,8 @@ function startDataListenerWithTimeout() {
         
         console.log(`📥 Загружены данные для пользователя ${USER_FLAG}:`, {
           userFlag: data.userFlag,
-          mamcoins: data.mamcoins,
-          pavlushi: data.pavlushi,
+          nestor: data.nestor,
+          vadimus: data.vadimus,
           historyCount: (data.history || []).length
         });
         
@@ -286,19 +286,19 @@ function startDataListenerWithTimeout() {
         }
         
         // Проверяем, изменились ли данные
-        const newMamcoins = data.mamcoins || 0;
-        const newPavlushi = data.pavlushi || 0;
+        const newNestor = data.nestor || 0;
+        const newVadimus = data.vadimus || 0;
         const newHistory = data.history || [];
         
         // Обновляем только если данные изменились
-        if (newMamcoins !== mamcoins || newPavlushi !== pavlushi || 
+        if (newNestor !== nestor || newVadimus !== vadimus || 
             JSON.stringify(newHistory) !== JSON.stringify(history)) {
           
-          mamcoins = newMamcoins;
-          pavlushi = newPavlushi;
+          nestor = newNestor;
+          vadimus = newVadimus;
           history = newHistory;
           
-          console.log(`💰 Синхронизировано с Firebase (${USER_FLAG}): ${mamcoins} мамкоинов, ${pavlushi} павлушей`);
+          console.log(`💰 Синхронизировано с Firebase (${USER_FLAG}): ${nestor} несторкоинов, ${vadimus} вадимусов`);
           
           // Обновляем localStorage для быстрого доступа в следующий раз
           saveToLocalStorage();
@@ -344,8 +344,8 @@ function createNewUser() {
     const userData = {
       userFlag: USER_FLAG,
       userId: userId,
-      mamcoins: mamcoins,
-      pavlushi: pavlushi,
+      nestor: nestor,
+      vadimus: vadimus,
       history: history,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       lastActive: firebase.firestore.FieldValue.serverTimestamp(),
@@ -381,22 +381,22 @@ function saveToFirebase() {
     const updateData = {
       userFlag: USER_FLAG,
       userId: userId,
-      mamcoins: mamcoins,
-      pavlushi: pavlushi,
+      nestor: nestor,
+      vadimus: vadimus,
       history: history,
       lastActive: firebase.firestore.FieldValue.serverTimestamp(),
     };
     
     console.log(`💾 Сохраняем данные для ${USER_FLAG}:`, {
       userFlag: USER_FLAG,
-      mamcoins: mamcoins,
-      pavlushi: pavlushi,
+      nestor: nestor,
+      vadimus: vadimus,
       historyCount: history.length
     });
     
     // Используем set с merge, чтобы создать документ если его нет, или обновить существующий
     userDocRef.set(updateData, { merge: true }).then(() => {
-      console.log(`💾 Синхронизировано с Firebase (${USER_FLAG}): ${mamcoins} мамкоинов, ${pavlushi} павлушей`);
+      console.log(`💾 Синхронизировано с Firebase (${USER_FLAG}): ${nestor} несторкоинов, ${vadimus} вадимусов`);
       updateSyncStatus('synced', '☁️ Синхронизировано');
     }).catch((error) => {
       console.error('❌ Ошибка синхронизации с Firebase:', error);
@@ -412,16 +412,16 @@ function saveToFirebase() {
 
 // Fallback методы для localStorage с учетом флага пользователя
 function loadFromLocalStorage() {
-  const savedMamcoins = localStorage.getItem(`mamcoins_${USER_FLAG}`);
-  const savedPavlushi = localStorage.getItem(`pavlushi_${USER_FLAG}`);
+  const savedNestor = localStorage.getItem(`nestor_${USER_FLAG}`);
+  const savedVadimus = localStorage.getItem(`vadimus_${USER_FLAG}`);
   const savedHistory = localStorage.getItem(`history_${USER_FLAG}`);
 
-  if (savedMamcoins !== null) {
-    mamcoins = parseInt(savedMamcoins) || 0;
+  if (savedNestor !== null) {
+    nestor = parseInt(savedNestor) || 0;
   }
 
-  if (savedPavlushi !== null) {
-    pavlushi = parseInt(savedPavlushi) || 0;
+  if (savedVadimus !== null) {
+    vadimus = parseInt(savedVadimus) || 0;
   }
 
   if (savedHistory) {
@@ -432,34 +432,34 @@ function loadFromLocalStorage() {
     }
   }
 
-  console.log(`📱 Загружено из localStorage (${USER_FLAG}): ${mamcoins} мамкоинов, ${pavlushi} павлушей`);
+  console.log(`📱 Загружено из localStorage (${USER_FLAG}): ${nestor} несторкоинов, ${vadimus} вадимусов`);
 }
 
 function saveToLocalStorage() {
-  localStorage.setItem(`mamcoins_${USER_FLAG}`, mamcoins.toString());
-  localStorage.setItem(`pavlushi_${USER_FLAG}`, pavlushi.toString());
+  localStorage.setItem(`nestor_${USER_FLAG}`, nestor.toString());
+  localStorage.setItem(`vadimus_${USER_FLAG}`, vadimus.toString());
   localStorage.setItem(`history_${USER_FLAG}`, JSON.stringify(history));
   
-  console.log(`📱 Сохранено в localStorage (${USER_FLAG}): ${mamcoins} мамкоинов, ${pavlushi} павлушей`);
+  console.log(`📱 Сохранено в localStorage (${USER_FLAG}): ${nestor} несторкоинов, ${vadimus} вадимусов`);
 }
 
 // Обновление отображения
 function updateDisplay() {
-  const mamcoinsEl = document.getElementById('mamcoins');
-  const pavlushiEl = document.getElementById('pavlushi');
+  const nestorEl = document.getElementById('nestor');
+  const vadimusEl = document.getElementById('vadimus');
   
-  if (mamcoinsEl) mamcoinsEl.textContent = mamcoins;
-  if (pavlushiEl) pavlushiEl.textContent = pavlushi;
+  if (nestorEl) nestorEl.textContent = nestor;
+  if (vadimusEl) vadimusEl.textContent = vadimus;
 }
 
-// Конвертация павлушей в мамкоины
-function convertPavlushi() {
-  if (pavlushi >= 10) {
-    const newMamcoins = Math.floor(pavlushi / 10);
-    mamcoins += newMamcoins;
-    pavlushi = pavlushi % 10;
+// Конвертация вадимусов в несторкоины
+function convertVadimus() {
+  if (vadimus >= 10) {
+    const newNestor = Math.floor(vadimus / 10);
+    nestor += newNestor;
+    vadimus = vadimus % 10;
 
-    addToHistory(`🔄 Конвертация: ${newMamcoins} мамкоинов из павлушей`, 'earn');
+    addToHistory(`🔄 Конвертация: ${newNestor} несторкоинов из вадимусов`, 'earn');
   }
 }
 
@@ -519,12 +519,12 @@ window.onclick = function (event) {
 };
 
 // Функции для отладки
-window.mamcoinsDebug = {
+window.nestorDebug = {
   showData: () => console.log({ 
     userFlag: USER_FLAG,
     userId: userId,
-    mamcoins, 
-    pavlushi, 
+    nestor, 
+    vadimus, 
     history: history.slice(0, 5),
     totalHistory: history.length,
     isLoading, 
@@ -538,22 +538,22 @@ window.mamcoinsDebug = {
       shopAction: !!document.getElementById('shopAction')
     }
   }),
-  addMamcoins: (amount) => { 
-    mamcoins += amount; 
+  addNestor: (amount) => { 
+    nestor += amount; 
     updateDisplay(); 
     saveToFirebase(); 
-    console.log(`➕ Добавлено ${amount} мамкоинов`);
+    console.log(`➕ Добавлено ${amount} несторкоинов`);
   },
-  addPavlushi: (amount) => { 
-    pavlushi += amount; 
+  addVadimus: (amount) => { 
+    vadimus += amount; 
     updateDisplay(); 
     saveToFirebase(); 
-    console.log(`➕ Добавлено ${amount} павлушей`);
+    console.log(`➕ Добавлено ${amount} вадимусов`);
   },
   reset: () => { 
     if (confirm('Точно сбросить все данные?')) {
-      mamcoins = 0; 
-      pavlushi = 0; 
+      nestor = 0; 
+      vadimus = 0; 
       history = []; 
       updateDisplay(); 
       saveToFirebase();
@@ -585,7 +585,7 @@ window.mamcoinsDebug = {
     const userFlags = new Set();
     
     allKeys.forEach(key => {
-      if (key.startsWith('mamcoins_') || key.startsWith('pavlushi_') || key.startsWith('history_')) {
+      if (key.startsWith('nestor_') || key.startsWith('vadimus_') || key.startsWith('history_')) {
         const flag = key.split('_')[1];
         userFlags.add(flag);
       }
@@ -597,8 +597,8 @@ window.mamcoinsDebug = {
     }
     
     userFlags.forEach(flag => {
-      const mamcoins = localStorage.getItem(`mamcoins_${flag}`) || '0';
-      const pavlushi = localStorage.getItem(`pavlushi_${flag}`) || '0';
+      const nestor = localStorage.getItem(`nestor_${flag}`) || '0';
+      const vadimus = localStorage.getItem(`vadimus_${flag}`) || '0';
       const history = localStorage.getItem(`history_${flag}`);
       let historyCount = 0;
       try {
@@ -607,7 +607,7 @@ window.mamcoinsDebug = {
         historyCount = 0;
       }
       
-      console.log(`🦊 ${flag}: ${mamcoins} мамкоинов, ${pavlushi} павлушей, ${historyCount} записей истории`);
+      console.log(`🦊 ${flag}: ${nestor} несторкоинов, ${vadimus} вадимусов, ${historyCount} записей истории`);
     });
   },
   switchUser: (newFlag) => {
@@ -638,7 +638,7 @@ window.mamcoinsDebug = {
       
       snapshot.forEach((doc) => {
         const data = doc.data();
-        console.log(`🦊 ${data.userFlag || 'НЕТ ФЛАГА'} (ID: ${doc.id}): ${data.mamcoins || 0} мамкоинов, ${data.pavlushi || 0} павлушей, ${(data.history || []).length} записей истории`);
+        console.log(`🦊 ${data.userFlag || 'НЕТ ФЛАГА'} (ID: ${doc.id}): ${data.nestor || 0} несторкоинов, ${data.vadimus || 0} вадимусов, ${(data.history || []).length} записей истории`);
       });
       
     } catch (error) {
@@ -667,8 +667,8 @@ window.mamcoinsDebug = {
         console.log(`📊 Данные ${USER_FLAG} в Firebase:`, {
           documentId: doc.id,
           userFlag: data.userFlag,
-          mamcoins: data.mamcoins,
-          pavlushi: data.pavlushi,
+          nestor: data.nestor,
+          vadimus: data.vadimus,
           historyCount: (data.history || []).length,
           createdAt: data.createdAt,
           lastActive: data.lastActive
@@ -683,7 +683,7 @@ window.mamcoinsDebug = {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('🦊 Запускаем систему мамкоинов...');
+  console.log('🦊 Запускаем систему несторкоинов...');
   
   // СНАЧАЛА загружаем из localStorage мгновенно
   loadFromLocalStorage();
@@ -696,7 +696,7 @@ document.addEventListener('DOMContentLoaded', function () {
   updateSyncStatus('offline', '📱 Локальные данные');
   
   setTimeout(() => {
-    window.mamcoinsDebug.testElements();
+    window.nestorDebug.testElements();
   }, 100);
   
   // ПОТОМ пытаемся подключиться к Firebase в фоне
@@ -711,4 +711,4 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-console.log(`🦊 Система мамкоинов для ${USER_FLAG} с Firebase v8 готова! Команды отладки: window.mamcoinsDebug`); 
+console.log(`🦊 Система несторкоинов для ${USER_FLAG} с Firebase v8 готова! Команды отладки: window.nestorDebug`); 
