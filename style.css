@@ -1015,7 +1015,7 @@ body::after {
   top: 15%;
   left: 20%;
   animation-duration: 12s;
-  transform: scale(0.21);
+  transform: scale(0.07);
 }
 
 .creeper-3d.creeper-2 {
@@ -1023,7 +1023,7 @@ body::after {
   right: 15%;
   animation-duration: 15s;
   animation-delay: -3s;
-  transform: scale(0.24);
+  transform: scale(0.08);
 }
 
 .creeper-3d.creeper-3 {
@@ -1031,7 +1031,7 @@ body::after {
   left: 12%;
   animation-duration: 10s;
   animation-delay: -7s;
-  transform: scale(0.19);
+  transform: scale(0.06);
 }
 
 header {
@@ -1239,27 +1239,12 @@ header h1 {
 }
 
 .btn-spend::before {
-    content: '';
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 8px;
-    vertical-align: middle;
-    background: #111;
-    border-radius: 2px;
-    position: relative;
-    box-shadow: 0 0 6px #222 inset;
+    content: "";
+    display: none;
 }
 .btn-spend::after {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 7px;
-  width: 4px;
-  height: 4px;
-  background: #E500FD;
-  box-shadow: 6px 0 #E500FD;
-  border-radius: 1px;
+    content: "";
+    display: none;
 }
 
 .btn-shop::before {
@@ -1526,19 +1511,19 @@ header h1 {
     .creeper-3d.creeper-1 {
         top: 10%;
         left: 8%;
-        transform: scale(0.15);
+        transform: scale(0.05);
     }
     
     .creeper-3d.creeper-2 {
         top: 20%;
         right: 8%;
-        transform: scale(0.16);
+        transform: scale(0.05);
     }
     
     .creeper-3d.creeper-3 {
         bottom: 35%;
         left: 5%;
-        transform: scale(0.14);
+        transform: scale(0.05);
     }
     
     /* Новые эндермены на мобильных */
@@ -1551,7 +1536,7 @@ header h1 {
     .big-enderman.enderman-4 {
         top: 50%;
         left: 3%;
-        transform: scale(0.21);
+        transform: scale(0.07);
     }
     
     header {
@@ -1759,4 +1744,69 @@ header h1 {
         10px 4px 0 #000,
         4px 8px 0 #000,
         6px 8px 0 #000;
+}
+
+/* Лица мобов для кнопок - улучшенная версия */
+.enderman-face {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    background: #1a1a1a;
+    position: relative;
+    vertical-align: middle;
+    border: 1px solid #333;
+}
+
+.enderman-face::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 2px;
+    height: 8px;
+    background: #ff1493;
+    box-shadow: 
+        10px 0 0 #ff1493,
+        0 1px 0 #ff69b4,
+        10px 1px 0 #ff69b4,
+        0 2px 0 #ff1493,
+        10px 2px 0 #ff1493;
+}
+
+.creeper-face {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    background: #4CAF50;
+    position: relative;
+    vertical-align: middle;
+    border: 1px solid #2e7d32;
+}
+
+.creeper-face::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 2px;
+    height: 2px;
+    background: #000;
+    box-shadow: 
+        12px 0 0 #000,
+        0 3px 0 #000,
+        2px 3px 0 #000,
+        4px 3px 0 #000,
+        6px 3px 0 #000,
+        8px 3px 0 #000,
+        10px 3px 0 #000,
+        12px 3px 0 #000,
+        4px 6px 0 #000,
+        6px 6px 0 #000,
+        8px 6px 0 #000,
+        3px 9px 0 #000,
+        9px 9px 0 #000,
+        4px 12px 0 #000,
+        8px 12px 0 #000;
 }
