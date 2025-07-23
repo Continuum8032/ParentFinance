@@ -58,10 +58,48 @@ body {
 }
 
 .container::after {
-    content: '⚫'; /* Эндермен */
+    content: '';
     top: 10px;
     right: 10px;
     animation: endermanTeleport 5s ease-in-out infinite;
+    width: 24px;
+    height: 48px;
+    background-image: 
+        radial-gradient(circle at 25% 12%, #8b00ff 2px, transparent 2px),
+        radial-gradient(circle at 75% 12%, #8b00ff 2px, transparent 2px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    position: relative;
+}
+
+/* CSS Enderman класс для использования в других местах */
+.enderman {
+    display: inline-block;
+    width: 16px;
+    height: 32px;
+    background-image: 
+        radial-gradient(circle at 25% 15%, #8b00ff 1px, transparent 1px),
+        radial-gradient(circle at 75% 15%, #8b00ff 1px, transparent 1px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 2px;
+}
+
+/* Маленький Enderman для кнопок */
+.enderman-small {
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    background-image: 
+        radial-gradient(circle at 25% 15%, #8b00ff 1px, transparent 1px),
+        radial-gradient(circle at 75% 15%, #8b00ff 1px, transparent 1px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    position: relative;
+    vertical-align: middle;
+    margin: 0 2px;
 }
 
 @keyframes creeperWobble {
@@ -113,12 +151,16 @@ body {
 }
 
 /* Эндермены */
-.enderman-decoration::before {
-    content: '⚫';
-}
-
 .enderman-decoration {
     animation: endermanFloat 8s ease-in-out infinite;
+    width: 20px;
+    height: 40px;
+    background-image: 
+        radial-gradient(circle at 25% 15%, #8b00ff 2px, transparent 2px),
+        radial-gradient(circle at 75% 15%, #8b00ff 2px, transparent 2px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    position: relative;
 }
 
 .enderman-decoration:nth-child(2) {
@@ -183,7 +225,7 @@ body {
 
 /* ДОБАВЛЯЕМ КРИПЕРОВ И ЭНДЕРМЕНОВ В УГЛЫ ЭКРАНА */
 body::before {
-    content: '💚 ⚫ 💚 ⚫';
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
@@ -191,12 +233,24 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 1;
-    font-size: 20px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
     opacity: 0.4;
+    animation: backgroundMobs 10s ease-in-out infinite;
+}
+
+/* Добавляем фоновых мобов через псевдоэлементы */
+body::after {
+    content: '💚';
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 20px;
+    opacity: 0.3;
     animation: backgroundMobs 10s ease-in-out infinite;
 }
 
@@ -366,8 +420,33 @@ header h1 {
 }
 
 /* ДОБАВЛЯЕМ КРИПЕРОВ И ЭНДЕРМЕНОВ НА КНОПКИ */
+.btn-earn {
+    position: relative;
+}
+
 .btn-earn::before {
-    content: '⚫ ';
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    vertical-align: middle;
+    margin-right: 8px;
+    position: relative;
+}
+
+.btn-earn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 2px;
+    background: #8b00ff;
+    box-shadow: 6px 0 0 #8b00ff;
+    border-radius: 0.5px;
 }
 
 .btn-spend::before {
@@ -415,7 +494,23 @@ header h1 {
 }
 
 .history h3::before {
-    content: '⚫ ';
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* Упрощенный Enderman для заголовков */
+.history h3::before {
+    background-image: 
+        radial-gradient(circle at 25% 20%, #8b00ff 1px, transparent 1px),
+        radial-gradient(circle at 75% 20%, #8b00ff 1px, transparent 1px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
 }
 
 .history h3::after {
@@ -497,7 +592,23 @@ header h1 {
 }
 
 .modal h3::before {
-    content: '⚫ ';
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Глаза для Enderman'а в модальных окнах */
+.modal h3::before {
+    background-image: 
+        radial-gradient(circle at 25% 20%, #8b00ff 1px, transparent 1px),
+        radial-gradient(circle at 75% 20%, #8b00ff 1px, transparent 1px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
 }
 
 .modal h3::after {
@@ -563,8 +674,22 @@ header h1 {
     text-shadow: 1px 1px 0px #2e7d32;
 }
 
+.btn-confirm {
+    position: relative;
+}
+
 .btn-confirm::before {
-    content: '⚫ ';
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background-image: 
+        radial-gradient(circle at 25% 15%, #8b00ff 1px, transparent 1px),
+        radial-gradient(circle at 75% 15%, #8b00ff 1px, transparent 1px),
+        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid #333;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 .btn-cancel {
