@@ -1,0 +1,751 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    background: 
+        linear-gradient(0deg, #4a4a4a 0px, #4a4a4a 2px, transparent 2px),
+        linear-gradient(90deg, #4a4a4a 0px, #4a4a4a 2px, transparent 2px),
+        linear-gradient(45deg, #7cb342 25%, transparent 25%, transparent 75%, #7cb342 75%),
+        linear-gradient(-45deg, #8bc34a 25%, transparent 25%, transparent 75%, #8bc34a 75%),
+        #689f38;
+    background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px, auto;
+    min-height: 100vh;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(139, 69, 19, 0.95);
+    border: 4px solid #654321;
+    border-style: inset;
+    box-shadow: 
+        inset 2px 2px 4px rgba(255,255,255,0.5),
+        inset -2px -2px 4px rgba(0,0,0,0.5),
+        0 8px 16px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* КРИПЕРЫ И ЭНДЕРМЕНЫ В УГЛАХ */
+.container::before,
+.container::after {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    z-index: 10;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container::before {
+    content: '💚'; /* Крипер */
+    top: 10px;
+    left: 10px;
+    animation: creeperWobble 4s ease-in-out infinite;
+}
+
+.container::after {
+    content: '⚫'; /* Эндермен */
+    top: 10px;
+    right: 10px;
+    animation: endermanTeleport 5s ease-in-out infinite;
+}
+
+@keyframes creeperWobble {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    25% { transform: translateY(-3px) rotate(-2deg) scale(1.1); }
+    50% { transform: translateY(-6px) rotate(0deg) scale(1.05); }
+    75% { transform: translateY(-3px) rotate(2deg) scale(1.1); }
+}
+
+@keyframes endermanTeleport {
+    0%, 90%, 100% { transform: translateY(0px) opacity(1); }
+    45%, 55% { transform: translateY(-10px) opacity(0.3); }
+}
+
+/* ПЛАВАЮЩИЕ КРИПЕРЫ И ЭНДЕРМЕНЫ ПО ЭКРАНУ */
+.creeper-decoration,
+.enderman-decoration {
+    position: fixed;
+    z-index: 5;
+    pointer-events: none;
+    font-size: 28px;
+}
+
+/* Криперы */
+.creeper-decoration::before {
+    content: '💚';
+}
+
+.creeper-decoration {
+    animation: creeperFloat 6s ease-in-out infinite;
+}
+
+.creeper-decoration:nth-child(1) {
+    top: 12%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.creeper-decoration:nth-child(3) {
+    bottom: 35%;
+    left: 5%;
+    animation-delay: 3s;
+}
+
+.creeper-decoration:nth-child(5) {
+    top: 60%;
+    right: 12%;
+    animation-delay: 1.5s;
+}
+
+/* Эндермены */
+.enderman-decoration::before {
+    content: '⚫';
+}
+
+.enderman-decoration {
+    animation: endermanFloat 8s ease-in-out infinite;
+}
+
+.enderman-decoration:nth-child(2) {
+    top: 25%;
+    right: 6%;
+    animation-delay: 2s;
+}
+
+.enderman-decoration:nth-child(4) {
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 4s;
+}
+
+.enderman-decoration:nth-child(6) {
+    top: 45%;
+    left: 10%;
+    animation-delay: 0.5s;
+}
+
+@keyframes creeperFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+        filter: hue-rotate(0deg);
+    }
+    25% { 
+        transform: translateY(-15px) rotate(3deg) scale(1.1); 
+        filter: hue-rotate(10deg);
+    }
+    50% { 
+        transform: translateY(-8px) rotate(0deg) scale(0.95); 
+        filter: hue-rotate(20deg);
+    }
+    75% { 
+        transform: translateY(-12px) rotate(-3deg) scale(1.05); 
+        filter: hue-rotate(10deg);
+    }
+}
+
+@keyframes endermanFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) opacity(1); 
+        filter: brightness(1);
+    }
+    20% { 
+        transform: translateY(-20px) rotate(2deg) opacity(0.8); 
+        filter: brightness(1.2);
+    }
+    40% { 
+        transform: translateY(-5px) rotate(0deg) opacity(0.3); 
+        filter: brightness(0.5);
+    }
+    60% { 
+        transform: translateY(-15px) rotate(-2deg) opacity(0.9); 
+        filter: brightness(1.1);
+    }
+    80% { 
+        transform: translateY(-10px) rotate(1deg) opacity(0.6); 
+        filter: brightness(0.8);
+    }
+}
+
+/* ДОБАВЛЯЕМ КРИПЕРОВ И ЭНДЕРМЕНОВ В УГЛЫ ЭКРАНА */
+body::before {
+    content: '💚 ⚫ 💚 ⚫';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    opacity: 0.4;
+    animation: backgroundMobs 10s ease-in-out infinite;
+}
+
+@keyframes backgroundMobs {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    background: rgba(64, 64, 64, 0.9); /* Темно-серый майнкрафтовый фон */
+    border: 3px solid #404040; /* Серая граница */
+    border-style: inset;
+    margin: 10px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 16px;
+    color: #FFD700; /* Золотой цвет для заголовка */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 2px 2px 4px rgba(0,0,0,0.9); /* Золотое свечение + темная тень */
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.minecraft-fox {
+    display: inline-block;
+    font-size: 24px;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+.minecraft-fox::before {
+    content: '🦊';
+}
+
+.sync-status {
+    text-align: center;
+    font-size: 10px;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9); /* Более яркий фон для читаемости */
+    border: 1px solid #ccc;
+    color: #333; /* Темный текст на светлом фоне */
+    font-family: 'Press Start 2P', monospace;
+}
+
+.sync-status.syncing {
+    background: rgba(255, 193, 7, 0.8);
+    border-color: #ffc107;
+    color: #856404;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.sync-status.synced {
+    background: rgba(40, 167, 69, 0.8);
+    border-color: #28a745;
+    color: #155724;
+}
+
+.sync-status.offline {
+    background: rgba(220, 53, 69, 0.8);
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.balance {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.balance-item {
+    background: rgba(255, 235, 59, 0.9);
+    border: 2px solid #fbc02d;
+    border-style: inset;
+    padding: 10px 15px;
+    font-size: 12px;
+    color: #f57f17;
+    text-shadow: 1px 1px 0px #fff;
+    min-width: 120px;
+    text-align: center;
+}
+
+.balance-item span:last-child {
+    font-weight: bold;
+    font-size: 14px;
+    color: #000000 !important; /* Черный цвет для мамкоинов и павлушей - принудительно */
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Белая тень для контраста на желтом фоне */
+}
+
+/* Стили для Несторкоинов - цвета Эндермена */
+.balance-nestor {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #4a4a4a 100%) !important;
+    border: 3px solid #8b00ff !important; /* Фиолетовая граница как глаза Эндермена */
+    color: #00ff00 !important; /* Зеленый текст */
+    box-shadow: 0 0 10px rgba(139, 0, 255, 0.5) !important;
+}
+
+.balance-nestor span {
+    color: #00ff00 !important; /* Зеленый текст */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7) !important;
+}
+
+.balance-nestor span:last-child {
+    color: #8b00ff !important; /* Фиолетовые цифры как глаза Эндермена */
+    text-shadow: 0 0 8px rgba(139, 0, 255, 0.8) !important;
+    font-weight: bold !important;
+}
+
+/* Стили для Вадимусов - цвета Крипера */
+.balance-vadimus {
+    background: linear-gradient(135deg, #4a7c59 0%, #5d8b6a 50%, #6fa07b 100%) !important;
+    border: 3px solid #2d5a3d !important; /* Темно-зеленая граница Крипера */
+    color: #1b3d1b !important; /* Темно-зеленый текст */
+    box-shadow: 0 0 10px rgba(77, 124, 89, 0.5) !important;
+}
+
+.balance-vadimus span {
+    color: #1b3d1b !important; /* Темно-зеленый текст */
+    text-shadow: 1px 1px 3px rgba(255,255,255,0.3) !important;
+}
+
+.balance-vadimus span:last-child {
+    color: #0f2817 !important; /* Очень темно-зеленые цифры */
+    text-shadow: 1px 1px 3px rgba(255,255,255,0.5) !important;
+    font-weight: bold !important;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    padding: 15px 20px;
+    border: 3px solid;
+    border-style: outset;
+    cursor: pointer;
+    transition: all 0.1s;
+    min-width: 120px;
+    position: relative;
+}
+
+.actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.actions button:active {
+    transform: translateY(0);
+    border-style: inset;
+}
+
+/* ДОБАВЛЯЕМ КРИПЕРОВ И ЭНДЕРМЕНОВ НА КНОПКИ */
+.btn-earn::before {
+    content: '⚫ ';
+}
+
+.btn-spend::before {
+    content: '💚 ';
+}
+
+.btn-shop::before {
+    content: '🛒 ';
+}
+
+.btn-earn {
+    background: #4caf50;
+    border-color: #66bb6a;
+    color: white;
+    text-shadow: 1px 1px 0px #2e7d32;
+}
+
+.btn-spend {
+    background: #f44336;
+    border-color: #ef5350;
+    color: white;
+    text-shadow: 1px 1px 0px #c62828;
+}
+
+.btn-shop {
+    background: #ff9800;
+    border-color: #ffb74d;
+    color: white;
+    text-shadow: 1px 1px 0px #ef6c00;
+}
+
+.history {
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid #666;
+    border-style: inset;
+    padding: 20px;
+}
+
+.history h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.history h3::before {
+    content: '⚫ ';
+}
+
+.history h3::after {
+    content: ' 💚';
+}
+
+#history-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px;
+    margin: 5px 0;
+    background: rgba(240, 240, 240, 0.8);
+    border: 2px solid #ccc;
+    border-style: inset;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.history-item.earn {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: #4caf50;
+}
+
+.history-item.spend {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: #f44336;
+}
+
+.history-item.shop {
+    background: rgba(255, 152, 0, 0.2);
+    border-color: #ff9800;
+}
+
+/* МОДАЛЬНЫЕ ОКНА */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: rgba(139, 69, 19, 0.95);
+    border: 4px solid #654321;
+    border-style: inset;
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal h3 {
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px #333;
+}
+
+.modal h3::before {
+    content: '⚫ ';
+}
+
+.modal h3::after {
+    content: ' 💚';
+}
+
+.modal select {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    width: 100%;
+    padding: 15px;
+    border: 3px solid #666;
+    border-style: inset;
+    background: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.modal select option {
+    font-size: 12px;
+    padding: 8px;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.modal select optgroup {
+    font-weight: bold;
+    background: rgba(76, 175, 80, 0.2);
+    font-size: 12px;
+    padding: 5px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    padding: 12px 20px;
+    border: 3px solid;
+    border-style: outset;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.modal button:hover {
+    transform: translateY(-1px);
+}
+
+.modal button:active {
+    transform: translateY(0);
+    border-style: inset;
+}
+
+.btn-confirm {
+    background: #4caf50;
+    border-color: #66bb6a;
+    color: white;
+    text-shadow: 1px 1px 0px #2e7d32;
+}
+
+.btn-confirm::before {
+    content: '⚫ ';
+}
+
+.btn-cancel {
+    background: #f44336;
+    border-color: #ef5350;
+    color: white;
+    text-shadow: 1px 1px 0px #c62828;
+}
+
+.btn-cancel::before {
+    content: '💚 ';
+}
+
+/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+        font-size: 10px;
+    }
+    
+    .container {
+        border-width: 2px;
+    }
+    
+    .container::before,
+    .container::after {
+        width: 32px;
+        height: 32px;
+        top: 5px;
+        font-size: 28px;
+    }
+    
+    .container::before {
+        left: 5px;
+    }
+    
+    .container::after {
+        right: 5px;
+    }
+    
+    .creeper-decoration,
+    .enderman-decoration {
+        font-size: 20px;
+    }
+    
+    body::before {
+        font-size: 16px;
+        padding: 10px;
+    }
+    
+    header {
+        padding: 20px 10px 15px;
+        margin: 5px;
+    }
+    
+    header h1 {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    
+    .minecraft-fox {
+        font-size: 18px;
+        margin: 0 3px;
+    }
+    
+    .balance {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .balance-item {
+        padding: 8px 12px;
+        font-size: 10px;
+        min-width: auto;
+    }
+    
+    .balance-item span:last-child {
+        font-size: 12px;
+        color: #000000 !important; /* Черный цвет для цифр в мобильной версии */
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    }
+    
+    /* Мобильные стили для Несторкоинов и Вадимусов */
+    .balance-nestor span {
+        color: #00ff00 !important; /* Зеленый текст в мобильной версии */
+        text-shadow: 0 0 3px rgba(0, 255, 0, 0.7) !important;
+    }
+    
+    .balance-nestor span:last-child {
+        color: #8b00ff !important; /* Фиолетовые цифры в мобильной версии */
+        text-shadow: 0 0 5px rgba(139, 0, 255, 0.8) !important;
+    }
+    
+    .balance-vadimus span {
+        color: #1b3d1b !important; /* Темно-зеленый текст в мобильной версии */
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.3) !important;
+    }
+    
+    .balance-vadimus span:last-child {
+        color: #0f2817 !important; /* Очень темно-зеленые цифры в мобильной версии */
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.5) !important;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .actions button {
+        font-size: 10px;
+        padding: 12px 15px;
+        min-width: auto;
+    }
+    
+    .history {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .history h3 {
+        font-size: 12px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10% auto;
+    }
+    
+    .modal h3 {
+        font-size: 14px;
+    }
+    
+    .modal select {
+        font-size: 14px;
+        padding: 12px;
+    }
+    
+    .modal select option {
+        font-size: 14px;
+    }
+    
+    .modal select optgroup {
+        font-size: 14px;
+    }
+    
+    .modal button {
+        font-size: 10px;
+        padding: 10px 15px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 10px;
+    }
+    
+    .minecraft-fox {
+        font-size: 16px;
+    }
+    
+    .actions button {
+        font-size: 9px;
+        padding: 10px 12px;
+    }
+    
+    .modal select {
+        font-size: 16px;
+    }
+    
+    .modal select option {
+        font-size: 16px;
+    }
+    
+    .modal select optgroup {
+        font-size: 16px;
+    }
+} 
