@@ -114,61 +114,13 @@ body {
     45%, 55% { transform: translateY(-10px) opacity(0.3); }
 }
 
-/* ПЛАВАЮЩИЕ КРИПЕРЫ И ЭНДЕРМЕНЫ ПО ЭКРАНУ */
-.creeper-decoration,
-.enderman-decoration {
-    position: fixed;
-    z-index: 5;
-    pointer-events: none;
-    font-size: 28px;
-}
+/* ИСПОЛЬЗУЕМ ТОЛЬКО БОЛЬШИЕ 3D ЭЛЕМЕНТЫ: .big-enderman и .creeper-3d */
 
-/* Криперы - теперь хорошие */
-.creeper-decoration {
-    animation: creeperFloat 6s ease-in-out infinite;
-    width: 20px;
-    height: 40px;
-    background: #4a7c59;
-    border: 1px solid #2d5a3d;
-    position: relative;
-}
+/* Удалены старые стили плавающих декораций */
 
-.creeper-decoration:nth-child(1) {
-    top: 12%;
-    left: 8%;
-    animation-delay: 0s;
-}
+/* Удалены старые стили для эндермен декораций */
 
-.creeper-decoration:nth-child(3) {
-    bottom: 35%;
-    left: 5%;
-    animation-delay: 3s;
-}
-
-.creeper-decoration:nth-child(5) {
-    top: 60%;
-    right: 12%;
-    animation-delay: 1.5s;
-}
-
-/* Эндермены - теперь плохие */
-.enderman-decoration {
-    animation: endermanFloat 8s ease-in-out infinite;
-    width: 20px;
-    height: 40px;
-    background-image: 
-        radial-gradient(circle at 25% 15%, #ff0080 2px, transparent 2px),
-        radial-gradient(circle at 75% 15%, #ff0080 2px, transparent 2px),
-        linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
-    border: 1px solid #333;
-    position: relative;
-}
-
-.enderman-decoration:nth-child(2) {
-    top: 25%;
-    right: 6%;
-    animation-delay: 2s;
-}
+/* Удален стиль для enderman-decoration */
 
 .enderman-decoration:nth-child(4) {
     bottom: 20%;
@@ -536,7 +488,7 @@ body::after {
   position: fixed;
   width: 60px;
   z-index: 1;
-  transform: scale(0.3);
+  transform: scale(0.39);
   top: 10%;
 }
 
@@ -847,6 +799,240 @@ body::after {
   100% { opacity: 0; transform: translateY(-20px); }
 }
 
+/* 3D CSS CREEPER */
+.creeper-3d {
+  --box: 1.5vmin;
+  --color0: #0000;
+  --color1: #8fe38f;
+  --color2: #0f800f;
+  --color3: #0db50d;
+  --color4: #609e60;
+  --color5: #00d500;
+  --color6: #4f9351;
+  --color7: #5ae143;
+  --color8: #ded;
+  --pos1x: 0; --pos1y: 4; --size1x: 3; --size1y: 4;
+  --pos2x: 1; --pos2y: -2; --size2x: 3; --size2y: 3;
+  --pos3x: 2; --pos3y: 1; --size3x: 3; --size3y: 4;
+  --pos4x: 3; --pos4y: 2; --size4x: 4; --size4y: 3;
+  --pos5x: 0; --pos5y: 2; --size5x: 2; --size5y: 3;
+  --pos6x: 1; --pos6y: -3; --size6x: 3; --size6y: 2;
+  --pos7x: 2; --pos7y: 3; --size7x: 2; --size7y: 1;
+  --pos8x: 3; --pos8y: 0; --size8x: 1; --size8y: 2;
+  --bg:
+    conic-gradient(at calc(100% - var(--box)) var(--box), var(--color1) 25%, #0000 0) calc(var(--pos1x) * var(--box)) calc(var(--pos1y) * var(--box)) / calc(var(--size1x) * var(--box)) calc(var(--size1y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color2) 0) calc(var(--pos2x) * var(--box)) calc(var(--pos2y) * var(--box)) / calc(var(--size2x) * var(--box)) calc(var(--size2y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color3) 0) calc(var(--pos3x) * var(--box)) calc(var(--pos3y) * var(--box)) / calc(var(--size3x) * var(--box)) calc(var(--size3y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color4) 0) calc(var(--pos4x) * var(--box)) calc(var(--pos4y) * var(--box)) / calc(var(--size4x) * var(--box)) calc(var(--size4y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color5) 0) calc(var(--pos5x) * var(--box)) calc(var(--pos5y) * var(--box)) / calc(var(--size5x) * var(--box)) calc(var(--size5y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color6) 0) calc(var(--pos6x) * var(--box)) calc(var(--pos6y) * var(--box)) / calc(var(--size6x) * var(--box)) calc(var(--size6y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color7) 0) calc(var(--pos7x) * var(--box)) calc(var(--pos7y) * var(--box)) / calc(var(--size7x) * var(--box)) calc(var(--size7y) * var(--box)),
+    conic-gradient(at var(--box) var(--box), #0000 75%, var(--color8) 0) calc(var(--pos8x) * var(--box)) calc(var(--pos8y) * var(--box)) / calc(var(--size8x) * var(--box)) calc(var(--size8y) * var(--box)),
+    var(--color1);
+  height: calc(30 * var(--box));
+  width: calc(8 * var(--box));
+  position: fixed;
+  transform-style: preserve-3d;
+  animation: creeperFloat 8s linear infinite;
+}
+
+.creeper-3d *,
+.creeper-3d *::before,
+.creeper-3d *::after {
+  position: absolute;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-shadow: inset 0 0 0 1px #0002;
+  background: var(--bg);
+}
+
+.creeper-3d *::before,
+.creeper-3d *::after {
+  box-shadow: inset 0 0 0 50vmin #0002;
+}
+
+/* creeper head */
+.creeper-head {
+  width: calc(8 * var(--box));
+  height: calc(8 * var(--box));
+  transform: translate3d(0, 0, calc(4 * var(--box)));
+  background:
+    linear-gradient(#000 0 0) calc(var(--box) * 1) calc(var(--box) * 2) / calc(var(--box) * 2) calc(var(--box) * 2) no-repeat,
+    linear-gradient(#000 0 0) calc(var(--box) * 5) calc(var(--box) * 2) / calc(var(--box) * 2) calc(var(--box) * 2) no-repeat,
+    linear-gradient(#000 0 0) calc(var(--box) * 3) calc(var(--box) * 4) / calc(var(--box) * 2) calc(var(--box) * 3) no-repeat,
+    linear-gradient(#000 0 0) calc(var(--box) * 2) calc(var(--box) * 5) / calc(var(--box) * 1) calc(var(--box) * 3) no-repeat,
+    linear-gradient(#000 0 0) calc(var(--box) * 5) calc(var(--box) * 5) / calc(var(--box) * 1) calc(var(--box) * 3) no-repeat,
+    var(--bg);
+}
+
+.creeper-head::before {
+  content: "";
+  transform-origin: 100% 50%;
+  transform: rotateY(-90deg);
+}
+
+.creeper-head::after {
+  content: "";
+  transform-origin: 0% 50%;
+  transform: rotateY(90deg);
+}
+
+.creeper-head-back {
+  transform: translateZ(calc(-8 * var(--box)));
+}
+
+.creeper-head-back::before {
+  content: "";
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+}
+
+.creeper-head-back::after {
+  content: "";
+  transform-origin: 50% 100%;
+  transform: rotateX(-90deg);
+}
+
+/* creeper body */
+.creeper-body {
+  width: calc(8 * var(--box));
+  height: calc(16 * var(--box));
+  transform: translate3d(0, calc(8 * var(--box)), calc(2 * var(--box)));
+}
+
+.creeper-body::before {
+  content: "";
+  left: 50%;
+  transform-origin: 100% 50%;
+  transform: rotateY(-90deg);
+  width: calc(4 * var(--box));
+}
+
+.creeper-body::after {
+  content: "";
+  transform-origin: 0% 50%;
+  transform: rotateY(90deg);
+  width: calc(4 * var(--box));
+}
+
+.creeper-body-back {
+  transform: translateZ(calc(-4 * var(--box)));
+}
+
+.creeper-body-back::before {
+  content: "";
+  width: 100%;
+  height: calc(4 * var(--box));
+  top: 100%;
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+}
+
+/* creeper feet */
+.creeper-feet {
+  background: none;
+  box-shadow: none;
+}
+
+.creeper-foot {
+  top: calc(24 * var(--box));
+  width: calc(4 * var(--box));
+  height: calc(6 * var(--box));
+  background:
+    repeating-conic-gradient(#000 0 25%, #040 0 50%) 0 100% / calc(2 * var(--box)) calc(2 * var(--box)) repeat-x,
+    var(--bg);
+}
+
+.creeper-foot::before {
+  content: "";
+  width: 100%;
+  height: calc(4 * var(--box));
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+}
+
+.creeper-foot::after {
+  content: "";
+  width: 100%;
+  top: 100%;
+  height: calc(4 * var(--box));
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+}
+
+.creeper-foot-back {
+  transform: translateZ(calc(4 * var(--box)));
+}
+
+.creeper-foot-back::before {
+  content: "";
+  height: 100%;
+  width: calc(4 * var(--box));
+  transform-origin: 0 50%;
+  transform: rotateY(90deg);
+}
+
+.creeper-foot-back::after {
+  content: "";
+  height: 100%;
+  width: calc(4 * var(--box));
+  transform-origin: 100% 50%;
+  transform: rotateY(-90deg);
+}
+
+@keyframes creeperFloat {
+  0% { transform: translateY(0px) rotateY(0deg); }
+  25% { transform: translateY(-10px) rotateY(90deg); }
+  50% { transform: translateY(0px) rotateY(180deg); }
+  75% { transform: translateY(-10px) rotateY(270deg); }
+  100% { transform: translateY(0px) rotateY(360deg); }
+}
+
+/* Позиционирование 5 криперов на странице */
+.creeper-3d.creeper-1 {
+  top: 15%;
+  left: 20%;
+  animation-duration: 12s;
+  transform: scale(0.25);
+}
+
+.creeper-3d.creeper-2 {
+  top: 25%;
+  right: 15%;
+  animation-duration: 15s;
+  animation-delay: -3s;
+  transform: scale(0.28);
+}
+
+.creeper-3d.creeper-3 {
+  bottom: 30%;
+  left: 12%;
+  animation-duration: 10s;
+  animation-delay: -7s;
+  transform: scale(0.22);
+}
+
+.creeper-3d.creeper-4 {
+  bottom: 20%;
+  right: 25%;
+  animation-duration: 18s;
+  animation-delay: -2s;
+  transform: scale(0.26);
+}
+
+.creeper-3d.creeper-5 {
+  top: 55%;
+  left: 8%;
+  animation-duration: 14s;
+  animation-delay: -5s;
+  transform: scale(0.24);
+}
+
 header {
     text-align: center;
     padding: 30px 20px 20px;
@@ -939,41 +1125,41 @@ header h1 {
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Белая тень для контраста на желтом фоне */
 }
 
-/* Стили для Несторкоинов - цвета Эндермена */
+/* Стили для Несторкоинов - цвета Эндермена (черный и фиолетовый) */
 .balance-nestor {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #4a4a4a 100%) !important;
-    border: 3px solid #8b00ff !important; /* Фиолетовая граница как глаза Эндермена */
-    color: #00ff00 !important; /* Зеленый текст */
-    box-shadow: 0 0 10px rgba(139, 0, 255, 0.5) !important;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0d0d0d 100%) !important;
+    border: 3px solid #B83DCD !important; /* Фиолетовая граница как частицы Эндермена */
+    color: #E500FD !important; /* Ярко-фиолетовый текст */
+    box-shadow: 0 0 15px rgba(184, 61, 205, 0.7) !important;
 }
 
 .balance-nestor span {
-    color: #00ff00 !important; /* Зеленый текст */
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7) !important;
+    color: #F769FA !important; /* Светло-фиолетовый текст */
+    text-shadow: 0 0 8px rgba(247, 105, 250, 0.8) !important;
 }
 
 .balance-nestor span:last-child {
-    color: #8b00ff !important; /* Фиолетовые цифры как глаза Эндермена */
-    text-shadow: 0 0 8px rgba(139, 0, 255, 0.8) !important;
+    color: #E500FD !important; /* Ярко-фиолетовые цифры как глаза Эндермена */
+    text-shadow: 0 0 12px rgba(229, 0, 253, 1) !important;
     font-weight: bold !important;
 }
 
-/* Стили для Вадимусов - цвета Крипера */
+/* Стили для Вадимусов - цвета Крипера (зеленый и серый) */
 .balance-vadimus {
-    background: linear-gradient(135deg, #4a7c59 0%, #5d8b6a 50%, #6fa07b 100%) !important;
-    border: 3px solid #2d5a3d !important; /* Темно-зеленая граница Крипера */
-    color: #1b3d1b !important; /* Темно-зеленый текст */
-    box-shadow: 0 0 10px rgba(77, 124, 89, 0.5) !important;
+    background: linear-gradient(135deg, #32cd32 0%, #4a4a4a 50%, #228b22 100%) !important;
+    border: 3px solid #696969 !important; /* Серая граница Крипера */
+    color: #2d5a2d !important; /* Темно-зеленый текст */
+    box-shadow: 0 0 10px rgba(105, 105, 105, 0.5) !important;
 }
 
 .balance-vadimus span {
-    color: #1b3d1b !important; /* Темно-зеленый текст */
-    text-shadow: 1px 1px 3px rgba(255,255,255,0.3) !important;
+    color: #2d5a2d !important; /* Темно-зеленый текст */
+    text-shadow: 1px 1px 2px rgba(105, 105, 105, 0.7) !important;
 }
 
 .balance-vadimus span:last-child {
-    color: #0f2817 !important; /* Очень темно-зеленые цифры */
-    text-shadow: 1px 1px 3px rgba(255,255,255,0.5) !important;
+    color: #008000 !important; /* Ярко-зеленые цифры */
+    text-shadow: 1px 1px 3px rgba(105, 105, 105, 0.8) !important;
     font-weight: bold !important;
 }
 
@@ -1009,7 +1195,39 @@ header h1 {
 
 /* ДОБАВЛЯЕМ КРИПЕРОВ И ЭНДЕРМЕНОВ НА КНОПКИ */
 .btn-earn::before {
-    content: '💚 ';
+    content: '';
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+    background: 
+        linear-gradient(#000 0 0) 2px 2px / 3px 3px no-repeat,
+        linear-gradient(#000 0 0) 8px 2px / 3px 3px no-repeat,
+        linear-gradient(#000 0 0) 5px 5px / 3px 4px no-repeat,
+        linear-gradient(#000 0 0) 3px 7px / 2px 4px no-repeat,
+        linear-gradient(#000 0 0) 8px 7px / 2px 4px no-repeat,
+        #32cd32;
+    border-radius: 1px;
+    box-shadow: inset 0 0 0 1px #228b22;
+}
+
+/* Инлайн иконка крипера для текста */
+.creeper-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin: 0 2px;
+    background: 
+        linear-gradient(#000 0 0) 2px 1px / 2px 2px no-repeat,
+        linear-gradient(#000 0 0) 7px 1px / 2px 2px no-repeat,
+        linear-gradient(#000 0 0) 4px 4px / 3px 3px no-repeat,
+        linear-gradient(#000 0 0) 3px 6px / 1px 3px no-repeat,
+        linear-gradient(#000 0 0) 7px 6px / 1px 3px no-repeat,
+        #32cd32;
+    border-radius: 1px;
+    box-shadow: inset 0 0 0 1px #228b22;
 }
 
 .btn-spend {
@@ -1284,7 +1502,7 @@ header h1 {
     
     /* Адаптивность для больших эндерменов на мобильных */
     .big-enderman {
-        transform: scale(0.2);
+        transform: scale(0.26);
         top: 5%;
     }
     
@@ -1294,6 +1512,42 @@ header h1 {
     
     .big-enderman.right-enderman {
         right: -40px;
+    }
+    
+    /* Адаптивность для 3D криперов на мобильных */
+    .creeper-3d {
+        --box: 1vmin;
+        transform: scale(0.2);
+    }
+    
+    .creeper-3d.creeper-1 {
+        top: 10%;
+        left: 8%;
+        transform: scale(0.18);
+    }
+    
+    .creeper-3d.creeper-2 {
+        top: 20%;
+        right: 8%;
+        transform: scale(0.19);
+    }
+    
+    .creeper-3d.creeper-3 {
+        bottom: 35%;
+        left: 5%;
+        transform: scale(0.17);
+    }
+    
+    .creeper-3d.creeper-4 {
+        bottom: 15%;
+        right: 18%;
+        transform: scale(0.18);
+    }
+    
+    .creeper-3d.creeper-5 {
+        top: 50%;
+        left: 3%;
+        transform: scale(0.17);
     }
     
     header {
