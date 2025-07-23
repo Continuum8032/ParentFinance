@@ -17,7 +17,7 @@
     
     <div class="container">
         <header>
-            <h1>🦊⚫ Лисички Андерменчики и Нестор <span class="minecraft-fox"></span></h1>
+            <h1>🦊 Лисички Андерменчики и Нестор <span class="minecraft-fox"></span></h1>
             <div id="sync-status" class="sync-status">📱 Локальные данные</div>
             <div class="balance">
                 <div class="balance-item balance-nestor">
@@ -32,23 +32,23 @@
         </header>
 
         <div class="actions">
-            <button onclick="showEarnModal()" class="btn-earn">⚫ Мама/Папа молодцы</button>
-            <button onclick="showSpendModal()" class="btn-spend">💚 Мама/Папа плохо</button>
+            <button onclick="showEarnModal()" class="btn-earn">Лисичка Сахарочек</button>
+            <button onclick="showSpendModal()" class="btn-spend">💚 Лисичка Тролл</button>
             <button onclick="showShopModal()" class="btn-shop">🛒 Награды родителям</button>
         </div>
 
         <div class="history">
-            <h3>⚫💚 Журнал оценок родителей</h3>
+            <h3>💚 Журнал оценок родителей</h3>
             <div id="history-list">🔄 Загружается...</div>
         </div>
     </div>
 
-    <!-- Модальное окно МАМА/ПАПА МОЛОДЦЫ -->
+    <!-- Модальное окно ЛИСИЧКА САХАРОЧЕК -->
     <div id="earnModal" class="modal">
         <div class="modal-content">
-            <h3>⚫ Мама/Папа молодцы! За что?</h3>
+            <h3>Лисичка Сахарочек! За что?</h3>
             <select id="earnAction">
-                <option value="">⚫ За что хвалим родителей?</option>
+                <option value="">За что хвалим родителей?</option>
                 <optgroup label="🍰 Еда и угощения">
                     <option value="5">Купили вкусняшки (+5 💚)</option>
                     <option value="10">Приготовили любимую еду (+10 💚)</option>
@@ -90,16 +90,16 @@
                 </optgroup>
             </select>
             <div class="modal-buttons">
-                <button onclick="confirmEarn()" class="btn-confirm">⚫ Молодцы!</button>
+                <button onclick="confirmEarn()" class="btn-confirm">Молодцы!</button>
                 <button onclick="closeModal('earnModal')" class="btn-cancel">❌ Отмена</button>
             </div>
         </div>
     </div>
 
-    <!-- Модальное окно МАМА/ПАПА ПЛОХО -->
+    <!-- Модальное окно ЛИСИЧКА ТРОЛЛ -->
     <div id="spendModal" class="modal">
         <div class="modal-content">
-            <h3>💚 Мама/Папа плохо! За что штраф?</h3>
+            <h3>💚 Лисичка Тролл! За что штраф?</h3>
             <select id="spendAction">
                 <option value="">💚 За что штрафуем родителей?</option>
                 <optgroup label="😠 Несправедливость">
