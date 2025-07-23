@@ -501,6 +501,23 @@ body::after {
   animation: headRotateRight 4s infinite alternate forwards;
 }
 
+/* Новые эндермены вместо удаленных криперов */
+.big-enderman.enderman-3 {
+  bottom: 20%;
+  right: 25%;
+  animation: headRotateBig 4s infinite alternate forwards;
+  animation-delay: -2s;
+  transform: scale(0.42);
+}
+
+.big-enderman.enderman-4 {
+  top: 55%;
+  left: 8%;
+  animation: headRotateRight 4s infinite alternate forwards;
+  animation-delay: -5s;
+  transform: scale(0.40);
+}
+
 .big-enderman .head {
   background: black;
   margin: 0 auto;
@@ -993,12 +1010,12 @@ body::after {
   100% { transform: translateY(0px) rotateY(360deg); }
 }
 
-/* Позиционирование 5 криперов на странице */
+/* Позиционирование 3 криперов на странице (размер уменьшен на 15%) */
 .creeper-3d.creeper-1 {
   top: 15%;
   left: 20%;
   animation-duration: 12s;
-  transform: scale(0.25);
+  transform: scale(0.21);
 }
 
 .creeper-3d.creeper-2 {
@@ -1006,7 +1023,7 @@ body::after {
   right: 15%;
   animation-duration: 15s;
   animation-delay: -3s;
-  transform: scale(0.28);
+  transform: scale(0.24);
 }
 
 .creeper-3d.creeper-3 {
@@ -1014,23 +1031,7 @@ body::after {
   left: 12%;
   animation-duration: 10s;
   animation-delay: -7s;
-  transform: scale(0.22);
-}
-
-.creeper-3d.creeper-4 {
-  bottom: 20%;
-  right: 25%;
-  animation-duration: 18s;
-  animation-delay: -2s;
-  transform: scale(0.26);
-}
-
-.creeper-3d.creeper-5 {
-  top: 55%;
-  left: 8%;
-  animation-duration: 14s;
-  animation-delay: -5s;
-  transform: scale(0.24);
+  transform: scale(0.19);
 }
 
 header {
@@ -1121,7 +1122,7 @@ header h1 {
 .balance-item span:last-child {
     font-weight: bold;
     font-size: 14px;
-    color: #000000 !important; /* Черный цвет для мамкоинов и павлушей - принудительно */
+    color: #000000 !important; /* Черный цвет для несторкоинов и вадимусов - принудительно */
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Белая тень для контраста на желтом фоне */
 }
 
@@ -1144,12 +1145,12 @@ header h1 {
     font-weight: bold !important;
 }
 
-/* Стили для Вадимусов - цвета Крипера (зеленый и серый) */
+/* Стили для Вадимусов - светло-зеленый фон */
 .balance-vadimus {
-    background: linear-gradient(135deg, #32cd32 0%, #4a4a4a 50%, #228b22 100%) !important;
-    border: 3px solid #696969 !important; /* Серая граница Крипера */
-    color: #2d5a2d !important; /* Темно-зеленый текст */
-    box-shadow: 0 0 10px rgba(105, 105, 105, 0.5) !important;
+    background: linear-gradient(135deg, #90ee90 0%, #98fb98 50%, #7cfc00 100%) !important;
+    border: 3px solid #32cd32 !important; /* Зеленая граница */
+    color: #006400 !important; /* Темно-зеленый текст */
+    box-shadow: 0 0 12px rgba(50, 205, 50, 0.6) !important;
 }
 
 .balance-vadimus span {
@@ -1161,6 +1162,15 @@ header h1 {
     color: #008000 !important; /* Ярко-зеленые цифры */
     text-shadow: 1px 1px 3px rgba(105, 105, 105, 0.8) !important;
     font-weight: bold !important;
+}
+
+/* Фиолетовая монетка для Несторкоинов */
+#nestor::before {
+    content: '●';
+    color: #B83DCD;
+    font-size: 16px;
+    margin-right: 5px;
+    text-shadow: 0 0 8px rgba(184, 61, 205, 0.8);
 }
 
 .actions {
@@ -1514,40 +1524,41 @@ header h1 {
         right: -40px;
     }
     
-    /* Адаптивность для 3D криперов на мобильных */
+    /* Адаптивность для 3D криперов на мобильных (осталось только 3) */
     .creeper-3d {
         --box: 1vmin;
-        transform: scale(0.2);
+        transform: scale(0.17);
     }
     
     .creeper-3d.creeper-1 {
         top: 10%;
         left: 8%;
-        transform: scale(0.18);
+        transform: scale(0.15);
     }
     
     .creeper-3d.creeper-2 {
         top: 20%;
         right: 8%;
-        transform: scale(0.19);
+        transform: scale(0.16);
     }
     
     .creeper-3d.creeper-3 {
         bottom: 35%;
         left: 5%;
-        transform: scale(0.17);
+        transform: scale(0.14);
     }
     
-    .creeper-3d.creeper-4 {
+    /* Новые эндермены на мобильных */
+    .big-enderman.enderman-3 {
         bottom: 15%;
         right: 18%;
-        transform: scale(0.18);
+        transform: scale(0.22);
     }
     
-    .creeper-3d.creeper-5 {
+    .big-enderman.enderman-4 {
         top: 50%;
         left: 3%;
-        transform: scale(0.17);
+        transform: scale(0.21);
     }
     
     header {
